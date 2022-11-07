@@ -1,7 +1,7 @@
 ```python
 from bs4 import BeautifulSoup
 import urllib.request
-
+    
 file = open('LINKS.txt', 'r')
 lines = file.readlines()
 for line in lines:
@@ -12,7 +12,10 @@ for line in lines:
     rang = 0
     while counter < 100:
         url = "".join([words[0].strip(),str(rang)]).strip()
-        page = urllib.request.urlopen(url)
+        try:
+            page = urllib.request.urlopen(url, timeout=5).read().decode('utf-8')
+        except:
+            break
         soup = BeautifulSoup(page, 'html.parser')
         for link in soup.find_all('img'):
             pic_url = link['src']
@@ -20,6 +23,7 @@ for line in lines:
             if pic_name[-3:] == 'jpg' and pic_url not in temp:
                 try:
                     urllib.request.urlretrieve(pic_url, pic_name)
+                    
                 except:
                     continue
                 temp.append(pic_url)
