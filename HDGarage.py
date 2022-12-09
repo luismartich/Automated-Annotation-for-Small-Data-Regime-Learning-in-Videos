@@ -137,7 +137,7 @@ class CocoLikeDataset(utils.Dataset):
         return m
 
         
-        '''
+      
         for annotation in annotations:
             class_id = annotation['category_id']
             mask = Image.new('1', (image_info['width'], image_info['height']))
@@ -152,7 +152,7 @@ class CocoLikeDataset(utils.Dataset):
         class_ids = np.array(class_ids, dtype=np.int32)
         
         return mask, class_ids
-        '''
+     
 
 
 
@@ -181,7 +181,7 @@ for image_id in image_ids:
     
 
 
-'''
+
 # define image id
 image_id = 0
 # load the image
@@ -382,4 +382,4 @@ def detect_and_color_splash(model, image_path=None, video_path=None):
 detect_and_color_splash(model, image_path="marble_dataset/val/test4.jpg")
 
 ######################################################
-         '''                
+                   
